@@ -5,4 +5,4 @@ EQUIPO Q:
 -CERVANTES LEON CAMILA 
 
 Proyecto integrador:
-Para el proyecto integrador, se desarrollarara un juego de Blackjack en C++. El objetivo es que un jugador humano pueda competir contra la computadora, siguiendo las reglas fundamentales del Blackjack. El jugador tendrá la opción de pedir más cartas (hit) o mantener su mano actual (stand). Ganará si su puntuación supera a la de la computadora sin exceder los 21 puntos. Si el puntaje del jugador supera los 21, perderá automáticamente. En caso de que ambos obtengan la misma puntuación, el resultado será un empate.
+Para el proyecto integrador, se creará un juego de Blackjack en C++ donde una persona podrá jugar contra la computadora. El objetivo del juego es sumar puntos con las cartas que se reparten, tratando de no superar los 21. El jugador podrá elegir si quiere pedir más cartas o quedarse con las que ya tiene. Ganará si su puntaje es mayor al de la computadora, pero sin pasarse de 21. Si el jugador se pasa de este límite, perderá automáticamente. Si ambos tienen el mismo puntaje, será un empate.
