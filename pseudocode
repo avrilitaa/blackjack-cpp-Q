@@ -1,1 +1,61 @@
+Algoritmo Blackjack-Q
+	Escribir ("¡Bienvenido al juego Blackjack!");
+    CrearBaraja()
+    Barajar()
+    RepartirCartasJugador()
+    RepartirCartasComputadora()
+    MostrarCartasJugador()
+    PuntosJugador = CalcularPuntosJugador()
+    Escribir ("Tu puntaje es: ", PuntosJugador);
+    MostrarPrimeraCartaComputadora()
+    Mientras PuntosJugador < 21 Hacer
+        Escribir ("Necesitas una carta adicional? si-no");
+        Leer respuesta;
+        Si respuesta == "si" Entonces
+            PedirCartaJugador()
+            MostrarCartasJugador()
+            PuntosJugador = CalcularPuntosJugador()
+            Escribir ("El numero de puntos obtenidos es: ", PuntosJugador);
+            Si PuntosJugador > 21 Entonces
+			Escribir ("Perdiste, puntaje mayor a 21.");
+        FinSi
+		Si PuntosJugador == 21 Entonces
+	        Escribir ("Partida ganada");
+        FinSi
+        SiNo
+	    Romper
+        FinSi
+	FinMientras
+	Si PuntosJugador <= 21 Entonces
+	MostrarCartasComputadora()
+	PuntosComputador = CalcularPuntosComputadora()
+	Escribir ("Puntaje del jugador 2 es: ", PuntosComputadora);
+	Mientras PuntosComputadora < 17 Hacer
+		PedirCartaComputadora()
+		MostrarCartasComputadora()
+		PuntosComputadora = CalcularPuntosComputadora()
+		Escribir ("Los puntos del jugador 2 es: ", PuntosComputadora);
+		Si PuntosComputadora > 21 Entonces
+		Escribir ("El jugador 2 ha perdido, puntaje mayor a 21.");
+		FinSi
+        Si PuntosComputadora == 21 Entonces
+		Escribir ("El jugador 2 ha ganado.");
+        FinSi
+    FinMientras
+    Si PuntosJugador > PuntosComputadora Entonces
+		Escribir ("¡GANASTE!");
+	Sino
+		Si PuntosComputadora > PuntosJugador Entonces
+		Escribir ("El jugador 2 ha ganado");
+	Sino
+		Escribir ("EMPATE");
+	FinSi
+    FinSi
+    Escribir ("Jugar otra ronda: si-no");
+    Leer Respuesta;
+    Si Respuesta == "si" Entonces
+	   Llamar a Blackjack 
+    SiNo
+    FinSi
+FinAlgoritmo
 
