@@ -1,5 +1,5 @@
 Algoritmo Blackjack-Q
-	Escribir ("¡Bienvenido al juego Blackjack!");
+    Escribir ("¡Bienvenido al juego Blackjack!");
     CrearBaraja()
     Barajar()
     RepartirCartasJugador()
@@ -8,54 +8,129 @@ Algoritmo Blackjack-Q
     PuntosJugador = CalcularPuntosJugador()
     Escribir ("Tu puntaje es: ", PuntosJugador);
     MostrarPrimeraCartaComputadora()
-    Mientras PuntosJugador < 21 Hacer
-        Escribir ("Necesitas una carta adicional? si-no");
+    1.-Mientras PuntosJugador < 21 Hacer
+        Escribir ("¿Necesitas una carta adicional? si-no");
         Leer respuesta;
         Si respuesta == "si" Entonces
             PedirCartaJugador()
             MostrarCartasJugador()
             PuntosJugador = CalcularPuntosJugador()
-            Escribir ("El numero de puntos obtenidos es: ", PuntosJugador);
+            Escribir ("El número de puntos obtenidos es: ", PuntosJugador);
             Si PuntosJugador > 21 Entonces
-			Escribir ("Perdiste, puntaje mayor a 21.");
-        FinSi
-		Si PuntosJugador == 21 Entonces
-	        Escribir ("Partida ganada");
-        FinSi
+                Escribir ("Perdiste, puntaje mayor a 21.");
+                Romper
+            FinSi
+            Si PuntosJugador == 21 Entonces
+                Escribir ("Partida ganada");
+                Romper
+            FinSi
         SiNo
-	    Romper
-        FinSi
-	FinMientras
-	Si PuntosJugador <= 21 Entonces
-	MostrarCartasComputadora()
-	PuntosComputador = CalcularPuntosComputadora()
-	Escribir ("Puntaje del jugador 2 es: ", PuntosComputadora);
-	Mientras PuntosComputadora < 17 Hacer
-		PedirCartaComputadora()
-		MostrarCartasComputadora()
-		PuntosComputadora = CalcularPuntosComputadora()
-		Escribir ("Los puntos del jugador 2 es: ", PuntosComputadora);
-		Si PuntosComputadora > 21 Entonces
-		Escribir ("El jugador 2 ha perdido, puntaje mayor a 21.");
-		FinSi
-        Si PuntosComputadora == 21 Entonces
-		Escribir ("El jugador 2 ha ganado.");
+            Romper
         FinSi
     FinMientras
-    Si PuntosJugador > PuntosComputadora Entonces
-		Escribir ("¡GANASTE!");
-	Sino
-		Si PuntosComputadora > PuntosJugador Entonces
-		Escribir ("El jugador 2 ha ganado");
-	Sino
-		Escribir ("EMPATE");
-	FinSi
+    2.-Si PuntosJugador <= 21 Entonces
+        MostrarCartasComputadora()
+        PuntosComputador = CalcularPuntosComputadora()
+        Escribir ("Puntaje del jugador 2 es: ", PuntosComputador);
+        3.-Mientras PuntosComputador < 17 Hacer
+            PedirCartaComputadora()
+            MostrarCartasComputadora()
+            PuntosComputador = CalcularPuntosComputadora()
+            Escribir ("Los puntos del jugador 2 son: ", PuntosComputador);
+            Si PuntosComputador > 21 Entonces
+                Escribir ("El jugador 2 ha perdido, puntaje mayor a 21.");
+                Romper
+            FinSi
+            Si PuntosComputador == 21 Entonces
+                Escribir ("El jugador 2 ha ganado.");
+                Romper
+            FinSi
+        FinMientras
+        4.-Si PuntosJugador > PuntosComputador Entonces
+            Escribir ("¡GANASTE!");
+        Sino
+            Si PuntosComputador > PuntosJugador Entonces
+                Escribir ("El jugador 2 ha ganado");
+            Sino
+                Escribir ("EMPATE");
+            FinSi
+        FinSi
     FinSi
-    Escribir ("Jugar otra ronda: si-no");
+    Escribir ("¿Jugar otra ronda? si-no");
     Leer Respuesta;
-    Si Respuesta == "si" Entonces
-	   Llamar a Blackjack 
-    SiNo
+    5.-Si Respuesta == "si" Entonces
+        Llamar a Blackjack 
     FinSi
 FinAlgoritmo
-
+// Subprocesos
+Función CrearBaraja()
+Baraja = []
+Para cada valor en ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"] Hacer
+	Para cada palo en ["Corazones", "Diamantes", "Tréboles", "Picas"] Hacer
+		Agregar (valor + " de " + palo) a Baraja
+	FinPara
+FinPara
+FinFunción
+Función Barajar()
+Baraja = Barajar(Baraja) 
+FinFunción
+Función RepartirCartasJugador()
+// Repartir dos cartas al jugador
+JugadorCartas = [SacarCarta(Baraja), SacarCarta(Baraja)]
+FinFunción
+Función RepartirCartasComputadora()
+// Repartir dos cartas a la computadora
+ComputadoraCartas = [SacarCarta(Baraja), SacarCarta(Baraja)]
+FinFunción
+Función MostrarCartasJugador()
+// Mostrar cartas del jugador
+Escribir ("Tus cartas son: ", JugadorCartas)
+FinFunción
+Función CalcularPuntosJugador()
+Puntos = 0
+Para cada carta en JugadorCartas Hacer
+	Si carta es "A" Entonces
+		Puntos = Puntos + 11
+	Sino
+		Puntos = Puntos + ValorDe(carta)
+	FinSi
+FinPara
+Retornar Puntos
+FinFunción
+Función MostrarPrimeraCartaComputadora()
+Escribir ("La primera carta de la computadora es: ", ComputadoraCartas[0])
+FinFunción
+Función PedirCartaJugador()
+Agregar SacarCarta(Baraja) a JugadorCartas
+FinFunción
+Función MostrarCartasComputadora()
+Escribir ("Las cartas de la computadora son: ", ComputadoraCartas)
+FinFunción
+Función CalcularPuntosComputadora()
+Puntos = 0
+Para cada carta en ComputadoraCartas Hacer
+	Si carta es "A" Entonces
+		Puntos = Puntos + 11 
+	Sino
+		Puntos = Puntos + ValorDe(carta) 
+	FinSi
+FinPara
+Retornar Puntos
+FinFunción
+Función PedirCartaComputadora()
+Agregar SacarCarta(Baraja) a ComputadoraCartas
+FinFunción
+Función SacarCarta(Baraja)
+Carta = Baraja[0]
+Baraja = Baraja[1:] 
+    Retornar Carta
+FinFunción
+Función ValorDe(carta)
+Si carta es "J" o carta es "Q" o carta es "K" Entonces
+	Retornar 10
+FinSi
+Si carta es "A" Entonces
+	Retornar 11
+FinSi
+Retornar Entero(carta)
+FinFunción
