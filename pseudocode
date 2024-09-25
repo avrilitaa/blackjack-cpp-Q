@@ -24,7 +24,7 @@ Algoritmo Blackjack-Q
                 Escribir ("Partida ganada");
                 Romper
             FinSi
-        SiNo
+        Otro
             Romper
         FinSi
     FinMientras
@@ -48,10 +48,10 @@ Algoritmo Blackjack-Q
         FinMientras
         4.-Si PuntosJugador > PuntosComputador Entonces
             Escribir ("¡GANASTE!");
-        Sino
+        Otro
             Si PuntosComputador > PuntosJugador Entonces
                 Escribir ("El jugador 2 ha ganado");
-            Sino
+            Otro
                 Escribir ("EMPATE");
             FinSi
         FinSi
@@ -91,7 +91,7 @@ Puntos = 0
 Para cada carta en JugadorCartas Hacer
 	Si carta es "A" Entonces
 		Puntos = Puntos + 11
-	Sino
+	otro
 		Puntos = Puntos + ValorDe(carta)
 	FinSi
 FinPara
@@ -111,7 +111,7 @@ Puntos = 0
 Para cada carta en ComputadoraCartas Hacer
 	Si carta es "A" Entonces
 		Puntos = Puntos + 11 
-	Sino
+	Otro
 		Puntos = Puntos + ValorDe(carta) 
 	FinSi
 FinPara
