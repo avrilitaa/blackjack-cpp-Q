@@ -1,0 +1,70 @@
+#include <iostream>
+#include <random>
+#include <string>
+using namespace std;
+int player = 0;
+int dealer = 0;
+
+string playerMessage = "Las cartas del jugador son: ";
+string dealerMessage = "Las cartas del dealer son: ";
+int cards[52];
+// Función para crear el mazo de cartas
+void createDeck() {
+    int cardValue = 2;
+    int cardCount = 0;
+    for (int figure = 1; figure <= 4; figure++) { // 4 palos de cartas
+        for (int card = 1; card <= 13; card++) {
+            switch (card) {
+                case 10:
+                case 11:
+                case 12:
+                    cardValue = 10;
+                    break;
+                case 13:
+                    cardValue = 11; // Valor del As
+                    break;
+                default:
+                    break;
+            }
+            cards[cardCount] = cardValue;
+            cardCount++;
+            cardValue++;
+        }
+        cardValue = 2;
+    }
+}
+// Función para sacar una carta aleatoria
+int drawCard() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dist(1, 52);
+    int card = dist(gen);
+    return cards[card - 1];
+}
+// Función que inicializa el juego y reparte cartas
+void initGame() {
+    cout << "Bienvenido al juego de initGame" << endl;
+    cout << "Repartiendo las cartas..." << endl;
+    // Repartir 2 cartas al jugador
+    player = drawCard() + drawCard();
+    cout << playerMessage << player << endl;
+    // Repartir 2 cartas al dealer (máquina)
+    dealer = drawCard() + drawCard();
+    cout << dealerMessage << dealer << endl;
+}
+// Función que valida quién ganó
+void validateWinner() {
+    if (player == 21 || (player > dealer && player <= 21)) {
+        cout << "Ganaste" << endl;
+    } else if (player == dealer) {
+        cout << "Empate" << endl;
+    } else {
+        cout << "Perdiste" << endl;
+    }
+}
+int main() {
+    createDeck();   // Crear el mazo de cartas
+    initGame();     // Inicializar el juego
+    validateWinner(); // Validar el ganador
+    return 0;
+}
